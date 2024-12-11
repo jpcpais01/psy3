@@ -1,23 +1,27 @@
 'use client';
 
-import { motion, AnimatePresence, useAnimation } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 const routes = ['/journal', '/', '/resources'];
 
+interface DragInfo {
+  velocity: { x: number };
+  offset: { x: number };
+}
+
 export default function SwipeableLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
   const controls = useAnimation();
-  const [touchStart, setTouchStart] = useState<number | null>(null);
   const [currentIndex, setCurrentIndex] = useState(routes.indexOf(pathname));
 
   useEffect(() => {
     setCurrentIndex(routes.indexOf(pathname));
   }, [pathname]);
 
-  const handleDragEnd = (event: any, info: any) => {
+  const handleDragEnd = (_event: MouseEvent | TouchEvent | PointerEvent, info: DragInfo) => {
     const threshold = 50;
     const velocity = info.velocity.x;
     const offset = info.offset.x;
