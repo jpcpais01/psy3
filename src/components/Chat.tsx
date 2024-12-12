@@ -99,7 +99,7 @@ export function Chat() {
                       </h2>
                       <p className="text-base opacity-80 leading-relaxed">
                         A compassionate space to explore your thoughts, feelings, and personal growth. 
-                        Begin by asking anything that's on your mind.
+                        Begin by asking anything that&apos;s on your mind.
                       </p>
                       <div className="mt-6 border-t border-[var(--border-subtle)] pt-4">
                         <p className="text-sm italic opacity-60">
