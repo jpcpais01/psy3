@@ -1,5 +1,5 @@
 import useEmblaCarousel from 'embla-carousel-react';
-import { ReactNode, useCallback, useEffect, useRef } from 'react';
+import { ReactNode, useCallback, useEffect } from 'react';
 
 interface CarouselContainerProps {
   children: ReactNode[];
