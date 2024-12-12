@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { PaperAirplaneIcon } from '@heroicons/react/24/solid';
+import { PaperAirplaneIcon, ArrowPathIcon } from '@heroicons/react/24/solid';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -78,28 +78,42 @@ export function Chat() {
     }
   };
 
+  const handleReset = () => {
+    setMessages([]);
+    setMessage('');
+  };
+
   return (
-    <div className="h-full w-full p-4 sm:p-6 bg-[var(--app-bg)]">
-      <div className="page-container">
-        <div className="content-container">
+    <div className="h-full w-full p-4 sm:p-6 bg-[var(--app-bg)] overflow-hidden">
+      <div className="page-container overflow-hidden">
+        <div className="content-container overflow-hidden">
           <h1 className="title mb-4">Chat</h1>
           <div className="card flex-1 flex flex-col p-4 relative overflow-hidden">
-            <div className="flex-1 overflow-y-auto chat-messages-container">
-              <div className="chat-messages-inner-container">
+            <div className="flex-1 overflow-y-auto overflow-x-hidden chat-messages-container">
+              <div className="chat-messages-inner-container w-full">
                 {messages.length === 0 ? (
-                  <div className="flex-1 flex items-center justify-center h-full">
-                    <div className="text-[var(--text-secondary)] text-center">
-                      <div className="welcome-icon mb-4">🤖</div>
-                      <p className="text-lg font-medium">Welcome to AI Chat!</p>
-                      <p className="text-sm mt-2 opacity-75">Ask me anything about psychology...</p>
+                  <div className="flex-1 flex items-center justify-center h-full w-full">
+                    <div className="text-[var(--text-secondary)] text-center max-w-md px-6">
+                      <h2 className="text-2xl font-light text-[var(--text-primary)] mb-4 tracking-tight">
+                        Welcome to Mindful AI
+                      </h2>
+                      <p className="text-base opacity-80 leading-relaxed">
+                        A compassionate space to explore your thoughts, feelings, and personal growth. 
+                        Begin by asking anything that's on your mind.
+                      </p>
+                      <div className="mt-6 border-t border-[var(--border-subtle)] pt-4">
+                        <p className="text-sm italic opacity-60">
+                          Your journey of self-discovery starts here.
+                        </p>
+                      </div>
                     </div>
                   </div>
                 ) : (
-                  <div className="space-y-4 px-2">
+                  <div className="space-y-4 px-2 w-full">
                     {messages.map((msg) => (
                       <div
                         key={msg.id}
-                        className={`message-wrapper ${msg.role === 'user' ? 'flex justify-end' : 'flex justify-start'}`}
+                        className={`message-wrapper w-full ${msg.role === 'user' ? 'flex justify-end' : 'flex justify-start'}`}
                       >
                         <div
                           className={`message ${
@@ -128,11 +142,18 @@ export function Chat() {
                 )}
               </div>
             </div>
-            <div className="chat-input-container mt-4 relative">
+            <div className="chat-input-container mt-4 relative w-full flex items-center">
+              <button
+                className="reset-button group mr-2 hover:scale-110"
+                onClick={handleReset}
+                aria-label="Reset chat"
+              >
+                <ArrowPathIcon className="w-5 h-5 transition-all duration-200 group-hover:rotate-180" />
+              </button>
               <input
                 type="text"
                 placeholder="Ask me anything..."
-                className="chat-input pr-12"
+                className="chat-input pr-12 flex-1"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 onKeyDown={(e) => {
