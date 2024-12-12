@@ -43,13 +43,14 @@
   }
 
   .page-container {
-    @apply w-full max-w-3xl mx-auto px-4 sm:px-6 py-4 sm:py-6 flex-1;
+    @apply w-full px-0.5 sm:px-1 lg:px-2 mx-auto max-w-full;
     height: calc(100vh - var(--safe-area));
+    padding-bottom: calc(var(--nav-spacing) / 2);
   }
 
   .content-container {
-    @apply h-full flex flex-col;
-    padding-bottom: var(--nav-spacing);
+    @apply w-full h-full;
+    padding-bottom: calc(var(--nav-spacing) / 4);
   }
 
   .floating-nav {
@@ -273,7 +274,13 @@
     display: flex;
     align-items: center;
     gap: 4px;
-    padding: 4px 8px;
+    padding: 0;
+    background: none;
+  }
+
+  .assistant-message .typing-indicator {
+    background: none !important;
+    padding: 0 !important;
   }
 
   .typing-indicator span {

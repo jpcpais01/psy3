@@ -88,7 +88,7 @@ export function Chat() {
       <div className="page-container overflow-hidden">
         <div className="content-container overflow-hidden">
           <h1 className="title mb-4">Chat</h1>
-          <div className="card flex-1 flex flex-col p-4 relative overflow-hidden">
+          <div className="card flex-1 flex flex-col p-4 relative overflow-hidden max-h-[calc(100vh-130px)]">
             <div className="flex-1 overflow-y-auto overflow-x-hidden chat-messages-container">
               <div className="chat-messages-inner-container w-full">
                 {messages.length === 0 ? (
@@ -142,37 +142,39 @@ export function Chat() {
                 )}
               </div>
             </div>
-            <div className="chat-input-container mt-4 relative w-full flex items-center">
+            <div className="chat-input-container mt-4 relative w-full flex items-center gap-3">
               <button
-                className="reset-button group mr-2 hover:scale-110"
+                className="reset-button group p-3 rounded-xl bg-[var(--card-bg)] border border-[var(--border-subtle)] hover:border-[var(--border-color)]"
                 onClick={handleReset}
                 aria-label="Reset chat"
               >
                 <ArrowPathIcon className="w-5 h-5 transition-all duration-200 group-hover:rotate-180" />
               </button>
-              <input
-                type="text"
-                placeholder="Ask me anything..."
-                className="chat-input pr-12 flex-1"
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' && !e.shiftKey) {
-                    e.preventDefault();
-                    handleSend();
-                  }
-                }}
-              />
-              <button
-                className={`send-button group absolute right-2 top-1/2 -translate-y-1/2 ${
-                  !message.trim() || isLoading ? 'opacity-50 cursor-not-allowed' : 'hover:scale-110'
-                }`}
-                onClick={handleSend}
-                disabled={!message.trim() || isLoading}
-                aria-label="Send message"
-              >
-                <PaperAirplaneIcon className="w-5 h-5 transition-all duration-200 group-hover:translate-x-0.5" />
-              </button>
+              <div className="relative flex-1">
+                <input
+                  type="text"
+                  placeholder="Ask me anything..."
+                  className="chat-input pr-12 w-full"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                      e.preventDefault();
+                      handleSend();
+                    }
+                  }}
+                />
+                <button
+                  className={`send-button group absolute right-2 top-1/2 -translate-y-1/2 ${
+                    !message.trim() || isLoading ? 'opacity-50 cursor-not-allowed' : 'hover:scale-110'
+                  }`}
+                  onClick={handleSend}
+                  disabled={!message.trim() || isLoading}
+                  aria-label="Send message"
+                >
+                  <PaperAirplaneIcon className="w-5 h-5 transition-all duration-200 group-hover:translate-x-0.5" />
+                </button>
+              </div>
             </div>
           </div>
         </div>
