@@ -93,15 +93,16 @@
   }
 
   .card {
-    @apply relative bg-[var(--card-bg)] rounded-xl 
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    @apply bg-[var(--card-bg)] rounded-xl 
            border border-[var(--border-subtle)]
            shadow-sm shadow-black/5
            backdrop-blur-xl
            transition-all duration-300
-           hover:shadow-lg hover:shadow-black/10
-           overflow-hidden;
-    display: flex;
-    flex-direction: column;
+           hover:shadow-lg hover:shadow-black/10;
     height: 100%; /* Ensure full height */
     max-width: 100%;
     width: 100%;
@@ -180,23 +181,16 @@
   }
 
   .chat-messages-container {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    height: 100%;
+    width: 100%;
     scrollbar-width: thin;
     scrollbar-color: var(--border-color) transparent;
-    overflow-x: hidden; /* Prevent horizontal scrolling */
-    overflow-y: auto;
-    word-wrap: break-word; /* Ensure long words break */
-    overflow-wrap: break-word; /* Modern alternative for word-wrap */
-    flex: 1;
-    max-height: calc(100% - 80px); /* Adjust based on input container height */
-  }
-
-  .chat-messages-inner-container {
-    height: 100%;
-    overflow-y: auto;
-    padding-right: 10px; /* Space for scrollbar */
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
   .chat-messages-container::-webkit-scrollbar {
@@ -210,6 +204,14 @@
   .chat-messages-container::-webkit-scrollbar-thumb {
     background-color: var(--border-color);
     border-radius: 3px;
+  }
+
+  .chat-messages-inner-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    width: 100%;
+    padding-right: 10px;
   }
 
   .message {
