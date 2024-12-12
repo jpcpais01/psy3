@@ -12,7 +12,7 @@ export function Journal() {
             <div className="card p-4 hover:border-[var(--accent-primary)] transition-colors cursor-pointer group">
               <div className="flex justify-between items-start mb-2">
                 <h3 className="text-sm font-medium group-hover:text-[var(--accent-primary)] transition-colors">
-                  Today's Reflection
+                  Today&apos;s Reflection
                 </h3>
                 <span className="text-xs text-[var(--text-secondary)]">Just now</span>
               </div>
